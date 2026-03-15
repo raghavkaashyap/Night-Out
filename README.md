@@ -1,10 +1,74 @@
-Night Out is designed to be an interactive app built with React Native and Expo that allows the user to plan their “night out”. The main function of the app is tracking user location to display bars/restaurants near them, as well as, display the statistics of a selected bar/restaurant. The app includes interactive features like a scrollable map, a drop down menu with bars/restaurant, and clickable markers on their respective bar locations.
+# Night Out
 
-Key Features:
-1. Interactive Map: Includes a scrollable map with clickable markers on each bar's/restaurant's location.
-2. Bar/Restaurant Selection: Users can choose bars from a dropdown menu for quick access to information.
-3. Statistics Display: Provides key data about each selected bar/restaurant, enhancing the decision-making process.
+Night Out is an Expo + React Native app for exploring nearby bars in Ames, IA. Users can search/select a venue from a dropdown, center the map on it, and open its website from the stats panel.
 
-Expected Future updates:
-1. Database Implementation: Track users and their preferences for a more personalized experience.
-2. Real-Time Bar Capacity: Integrate a Geolocation API to update and display bar/restaurant capacity in real-time.
+## Features
+
+- Interactive Google map with venue markers and callouts
+- Searchable dropdown for quick venue selection
+- Map auto-focus when selecting a venue
+- Persistent per-device UUID generation (stored in AsyncStorage)
+
+## Tech Stack
+
+- Expo SDK 54
+- React Native 0.81
+- `react-native-maps`
+- `react-native-element-dropdown`
+- `@react-native-async-storage/async-storage`
+- `expo-crypto`
+
+## Project Structure
+
+```text
+.
+├── App.js
+├── src
+│   ├── components
+│   │   ├── NightOutScreen.native.js
+│   │   └── NightOutScreen.web.js
+│   ├── constants
+│   │   └── map.js
+│   ├── data
+│   │   └── markers.js
+│   └── utils
+│       └── deviceId.js
+├── assets/
+└── package.json
+```
+
+## Getting Started
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Start Expo:
+
+```bash
+npm start
+```
+
+3. Run on a target platform:
+
+```bash
+npm run ios
+npm run android
+npm run web
+```
+
+## Verification
+
+Run a static type check (includes JS via Expo TS config):
+
+```bash
+npx tsc --noEmit
+```
+
+## Notes
+
+- Venue data currently lives in `src/data/markers.js`.
+- Native platforms render `react-native-maps`; web uses a fallback info panel.
+- If a venue has no website, the bottom panel prompts the user to select another venue.
